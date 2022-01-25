@@ -1,0 +1,17 @@
+
+useDynLib(penAFT, .registration = TRUE)
+
+export(penAFT)
+export(penAFT.cv)
+export(penAFT.predict)
+export(penAFT.coef)
+export(penAFT.plot)
+export(penAFT.trace)
+export(genSurvData)
+
+
+import(Rcpp)
+import(Matrix)
+import(irlba)
+import(ggplot2)
+importFrom("stats", "quantile", "rexp", "rlogis", "rnorm",  "sd", "var")
