@@ -1,6 +1,6 @@
 \name{penAFT.trace}
 \alias{penAFT.trace}
-\title{Print trace plot for the regularized Gehan estimator fit using \code{penAFT} or \code{penAFT.cv}}
+\title{Print trace plot for the semiparametric AFT fit using \code{penAFT} or \code{penAFT.cv}}
 \description{Print the trace plot for the regularized Gehan estimator.}
 \usage{
 penAFT.trace(fit, groupNames=NULL)
@@ -8,7 +8,7 @@ penAFT.trace(fit, groupNames=NULL)
 
 \arguments{
 \item{fit}{A fitted model from \code{penAFT} or \code{penAFT.cv}.}
-\item{groupNames}{A list of groupnames to be printed when \code{fit} used penalty "SG".}
+\item{groupNames}{A list of group names to be printed when \code{fit} used penalty "SG".}
 }
 
 \value{No return value; prints a trace plot as described in Details.}

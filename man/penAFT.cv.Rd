@@ -16,7 +16,7 @@ penAFT.cv(X, logY, delta, nlambda = 50,
   \item{logY}{An \eqn{n}-dimensional vector of log-survival or log-censoring times.}
   \item{delta}{An \eqn{n}-dimensional binary vector indicating whether the \eqn{j}th component of \code{logY} is an observed log-survival time (\eqn{\delta_j = 1}) or a log-censoring time (\eqn{\delta_j = 0}) for \eqn{j=1, \dots, n}.}
   \item{nlambda}{The number of candidate tuning parameters to consider.}
-  \item{lambda.ratio.min}{The ratio of maximum to minimum candidate tuning parameter value. As a default, we suggest 0.1, but standard model selection procedures should be applied to select \eqn{\lambda}.}
+  \item{lambda.ratio.min}{The ratio of minimum to maximum candidate tuning parameter value. As a default, we suggest 0.1, but standard model selection procedures should be applied to select \eqn{\lambda}. Must belong to (0,1).}
   \item{lambda}{An optional (not recommended) prespecified vector of candidate tuning parameters. Should be in descending order. }
   \item{penalty}{Either "EN" or "SG" for elastic net or sparse group lasso penalties.}
   \item{alpha}{The tuning parameter \eqn{\alpha}. See documentation.}
@@ -34,7 +34,7 @@ penAFT.cv(X, logY, delta, nlambda = 50,
 \value{
 \item{full.fit}{A model fit with the same output as a model fit using \code{penAFT}. See documentation for \code{penAFT} for more.}
 \item{cv.err.linPred}{A \code{nlambda}-dimensional vector of cross-validated linear predictor scores.}
-\item{cv.err.obj}{A \code{nfolds }\eqn{\times}\code{nlambda} matrix of cross-valdiation Gehan losses.}
+\item{cv.err.obj}{A \code{nfolds }\eqn{\times}\code{nlambda} matrix of cross-validated Gehan losses.}
 \item{cv.index}{A list of length \code{nfolds}. Each element contains the indices for subjects belonging to that particular fold.}
 }
 
@@ -51,7 +51,7 @@ The weighted elastic net penalty is defined as
    
 Next, we define the cross-validation errors. 
 Let \eqn{\mathcal{V}_1, \dots, \mathcal{V}_K} be a random \code{nfolds} = \eqn{K} element partition of \eqn{[n]} (the subjects) with the cardinality of each \eqn{\mathcal{V}_k} (the "kth fold"") approximately equal for \eqn{k = 1, \dots, K}. 
-Let \eqn{{\hat{\beta}}_{\lambda(-\mathcal{V}_k)}} be the solution with tuning parameter \eqn{\lambda} using only data indexed by \eqn{[n] \setminus \{\mathcal{V}_k\}} (i.e., outside the kth fold). Then, definining \eqn{e_i(\beta) := \log y_i - \beta'x_i} for \eqn{i= 1, \dots, n}, we call 
+Let \eqn{{\hat{\beta}}_{\lambda(-\mathcal{V}_k)}} be the solution with tuning parameter \eqn{\lambda} using only data indexed by \eqn{[n] \setminus \{\mathcal{V}_k\}} (i.e., outside the kth fold). Then, defining \eqn{e_i(\beta) := \log y_i - \beta'x_i} for \eqn{i= 1, \dots, n}, we call 
 %\vspace{-10pt}
 \deqn{
 \sum_{k=1}^K \left[\frac{1}{|\mathcal{V}_k|^2}  \sum_{i \in \mathcal{V}_k} \sum_{j \in \mathcal{V}_k} \delta_i \{e_i({\hat{\beta}}_{\lambda(-\mathcal{V}_k)}) - e_{j}({\hat{\beta}}_{\lambda(-\mathcal{V}_k)})\}^{-}\right],
